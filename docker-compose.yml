@@ -1,15 +1,22 @@
-version: '3'
+version: '3.2'
 services:
   graphdb:
     build:
       context: .
       dockerfile: proof/Dockerfile
-    user: baker
+    user: neo4j
     logging:
       driver: json-file
     networks:
       app_net:
         ipv4_address: 10.0.1.18
+    volumes:
+      - type: volume
+        source: data
+        target: /data
+      - type: volume
+        source: logs
+        target: /logs
 
 networks:
   app_net:
@@ -19,3 +26,7 @@ networks:
       driver: default
       config:
       - subnet: 10.0.1.0/24
+
+volumes:
+  data:
+  logs:
