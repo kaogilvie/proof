@@ -5,11 +5,6 @@ services:
       context: .
       dockerfile: proof/Dockerfile
     user: neo4j
-    logging:
-      driver: json-file
-    networks:
-      app_net:
-        ipv4_address: 10.0.1.18
     volumes:
       - type: volume
         source: data
@@ -17,6 +12,12 @@ services:
       - type: volume
         source: logs
         target: /logs
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    networks:
+      app_net:
+        ipv4_address: 10.0.1.18
 
 networks:
   app_net:
