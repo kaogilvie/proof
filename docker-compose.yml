@@ -1,0 +1,21 @@
+version: '3'
+services:
+  graphdb:
+    build:
+      context: .
+      dockerfile: proof/Dockerfile
+    user: baker
+    logging:
+      driver: json-file
+    networks:
+      app_net:
+        ipv4_address: 10.0.1.18
+
+networks:
+  app_net:
+    driver: bridge
+
+    ipam:
+      driver: default
+      config:
+      - subnet: 10.0.1.0/24
