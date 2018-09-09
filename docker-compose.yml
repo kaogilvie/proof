@@ -1,6 +1,6 @@
 version: '3.2'
 services:
-  graphdb:
+  proof:
     build:
       context: .
       dockerfile: proof/Dockerfile
