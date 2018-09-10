@@ -4,17 +4,18 @@ services:
     build:
       context: .
       dockerfile: proof/Dockerfile
+    container_name: proof_graph
     user: neo4j
-    volumes:
-      - type: volume
-        source: data
-        target: /data
-      - type: volume
-        source: logs
-        target: /logs
-      - type: volume
-        source: import
-        target: /import
+    # volumes:
+      # - type: bind
+      #   source: data/
+      #   target: /data
+    #   - type: volume
+    #     source: logs/
+    #     target: /logs
+      # - type: bind
+      #   source: import
+      #   target: /csv_imports
     ports:
       - "7474:7474"
       - "7687:7687"
@@ -31,6 +32,7 @@ networks:
       config:
       - subnet: 10.0.1.0/24
 
-volumes:
-  data:
-  logs:
+# volumes:
+#   data:
+#   logs:
+  # import:
